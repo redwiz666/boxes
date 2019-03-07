@@ -49,7 +49,17 @@
             ],
 
             "shutdown_command": "echo 'shutdown -h now' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
-        }
+                    
+            "remote_type": "esx5",
+            "remote_host": "{{user `esxi_host`}}",
+            "remote_datastore": "{{user `esxi_datastore`}}",
+            "remote_username": "{{user `esxi_username`}}",
+            "remote_password": "{{user `esxi_password`}}",
+            "keep_registered": true,
+      
+            "vmx_data": {
+                "ethernet0.networkName": "VM Network"
+          }
     ],
 
     "post-processors": [
