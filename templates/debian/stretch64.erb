@@ -11,6 +11,7 @@
             "type": "shell",
             "scripts": [
                 "scripts/postinstall.sh",
+                "scripts/puppet.sh",
                 "scripts/vmtools.sh",
                 <%- @scripts.each do |script| -%>
                 "scripts/<%= script %>",
