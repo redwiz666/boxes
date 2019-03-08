@@ -9,3 +9,6 @@ os_release=$(lsb_release -cs)
 wget "https://apt.puppet.com/puppet5-release-$os_release.deb"
 dpkg -i "puppet5-release-$os_release.deb"
 apt-get -q update
+
+#set puppet to auto start
+puppet resource service puppet ensure=running enable=true
