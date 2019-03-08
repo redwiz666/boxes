@@ -36,7 +36,7 @@
             "http_directory": "templates/debian",
 
             "boot_command": [
-                "<esc><wait>",
+                "<wait><wait><esc><wait><wait><wait><wait>",
                 "install ",
                 "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
                 "debian-installer=en_US auto=true locale=en_US kbd-chooser/method=us ",
