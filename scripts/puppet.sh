@@ -6,11 +6,20 @@
 os_release=$(lsb_release -cs)
 
 # configure the puppet package sources
+echo "Enabling the Puppet platform repository"
 wget "https://apt.puppet.com/puppet5-release-$os_release.deb"
 dpkg -i "puppet5-release-$os_release.deb"
 apt-get -q update
 
+# Install Puppet
+echo "Installing Puppet..."
+apt -y install puppet
+#DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install ${PINST} >/dev/null
+echo "Puppet installed!"
+read -p "Press enter to continue"
+
 #Setup masterless mode
+echo "Setting Masterless mode"
 echo "[main]
 logdir=/var/log/puppet
 vardir=/var/lib/puppet
@@ -21,6 +30,7 @@ modulepath=/etc/puppet/code/modules" > /etc/puppet/puppet.conf
 #set puppet to auto start
 echo "Setting puppet to start on reboot"
 puppet resource service puppet ensure=running enable=true
+
 echo "Checking puppet version"
 puppet --version
 puppet master --version
