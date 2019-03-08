@@ -11,4 +11,18 @@ dpkg -i "puppet5-release-$os_release.deb"
 apt-get -q update
 
 #set puppet to auto start
+echo "Setting puppet to start on reboot"
 puppet resource service puppet ensure=running enable=true
+echo "Checking puppet version"
+puppet --version
+puppet master --version
+puppet agent --version
+read -p "Press enter to continue"
+echo '# Defaults for puppet - sourced by /etc/init.d/puppet
+
+# Start puppet on boot?
+ START=yes
+
+# Startup options
+ DAEMON_OPTS=""' > /etc/default/puppet
+read -p "Press enter to continue"
